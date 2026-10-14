@@ -11,12 +11,11 @@ from google import genai
 # 1. Configuración de la página
 st.set_page_config(page_title="SEO Catalog Pro | AI E-commerce", page_icon="🚀", layout="wide")
 
-# 2. Gestión segura de la API Key
-try:
+# 2. Gestión segura de la API Key (Local o Nube)
+if hasattr(st, "secrets") and "GEMINI_API_KEY" in st.secrets:
     API_KEY = st.secrets["GEMINI_API_KEY"]
-except Exception:
-    st.error("⚠️ Falta configurar GEMINI_API_KEY en los Secrets del servidor.")
-    st.stop()
+else:
+    API_KEY = "AQ.Ab8RN6Lmu_89CRW3PV0oNl2CwDCU6vtdPMcFmPbFP-4MNAA35g"
 
 client = genai.Client(api_key=API_KEY)
 
